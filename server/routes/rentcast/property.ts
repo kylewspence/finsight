@@ -64,8 +64,11 @@ router.get('/', async (req, res, next) => {
       bathrooms: propertyData.bathrooms || 0,
       squareFootage: propertyData.squareFootage || 0,
       yearBuilt: propertyData.yearBuilt || 0,
-      lastSaleDate: propertyData.lastSaleDate || '',
+      lastSale: propertyData.lastSale || '',
       lastSalePrice: propertyData.lastSalePrice || 0,
+      price: propertyData.price || 0,
+      priceRangeLow: propertyData.priceRangeLow || 0,
+      priceRangeHigh: propertyData.priceRangeHigh || 0,
     };
 
     console.log(`Successfully retrieved property data for: ${address}`);

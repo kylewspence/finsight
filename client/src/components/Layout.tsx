@@ -31,6 +31,7 @@ export default function Layout() {
               />
             </Link>
 
+            {/* Avatar */}
             {user && (
               <div className="flex items-center">
                 <Avatar>
@@ -41,6 +42,8 @@ export default function Layout() {
                   <AvatarFallback>CN</AvatarFallback>
                 </Avatar>
                 <span className="ml-2">{user?.userName}</span>
+                
+                {/* Logout */}
                 <Button onClick={handleLogout} className="ml-10">
                   Logout
                 </Button>

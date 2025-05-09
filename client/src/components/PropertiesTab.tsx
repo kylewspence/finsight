@@ -10,27 +10,7 @@ import { readToken } from '@/lib/data';
 import { useUser } from './useUser';
 import { getStreetViewImage } from '@/lib/utils';
 
-interface DbProperty {
-  propertyId: number;
-  formattedAddress: string;
-  type: string;
-  beds: number;
-  bath: number;
-  squareFootage: number;
-  yearBuilt: number;
-  lastSale: string;
-  lastSalePrice: number;
-  estimatedValue: number;
-  estimatedRangeLow: number;
-  estimatedRangeHigh: number;
-  imageUrl?: string;
-  notes?: string;
-  monthlyRent?: number;
-  mortgagePayment?: number;
-  mortgageBalance?: number;
-  hoaPayment?: number;
-  interestRate?: number;
-}
+
 
 export default function PropertiesTab() {
   const { user } = useUser();
@@ -59,22 +39,21 @@ export default function PropertiesTab() {
 
         // Convert database properties to PropertyType format
         const formattedProperties: PropertyType[] = dbProperties.map(
-          (prop: DbProperty) => ({
-            id: prop.propertyId,
+          (prop: PropertyType) => ({
+            id: prop.id,
             formattedAddress: prop.formattedAddress,
-            propertyType: prop.type,
-            bedrooms: prop.beds,
-            bathrooms: prop.bath,
+            propertyType: prop.propertyType,
+            bedrooms: prop.bedrooms,
+            bathrooms: prop.bathrooms,
             squareFootage: prop.squareFootage,
             yearBuilt: prop.yearBuilt,
-            lastSaleDate: prop.lastSale,
+            lastSale: prop.lastSale,
             lastSalePrice: prop.lastSalePrice,
-            estimatedValue: prop.estimatedValue,
-            estimatedRangeLow: prop.estimatedRangeLow,
-            estimatedRangeHigh:
-              prop.estimatedValue + prop.estimatedValue * 0.04,
+            price: prop.price,
+            priceRangeLow: prop.priceRangeLow,
+            priceRangeHigh: prop.priceRangeHigh,
             monthlyRent: prop.monthlyRent || 0,
-            image: prop.imageUrl || getStreetViewImage(prop.formattedAddress),
+            image: prop.image || getStreetViewImage(prop.formattedAddress),
             notes: prop.notes || '',
             mortgagePayment: prop.mortgagePayment || 0,
             mortgageBalance: prop.mortgageBalance || 0,

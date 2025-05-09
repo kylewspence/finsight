@@ -887,7 +887,7 @@ export function PropertyDetails({ address }: PropertyDetailsProps) {
         </div>
         <div>
           <p className="text-sm text-gray-500">Estimated Value</p>
-          <p>${property.estimatedValue?.toLocaleString() || 'N/A'}</p>
+          <p>${property.price?.toLocaleString() || 'N/A'}</p>
         </div>
         {/* More property details... */}
       </div>

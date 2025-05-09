@@ -5,10 +5,10 @@ VALUES
   (1, 'kdubs1', '$argon2id$v=19$m=65536,t=3,p=4$hJZ+bXoGbVpKLDy/OBtaTg$lpDtMvEx+Im5T5BzwbELTnHFwif8wiEzha6cy5flMLc');
 
 INSERT INTO "properties" (
-  "userId", "formattedAddress", "estimatedValue", "estimatedRangeLow", "estimatedRangeHigh",
+  "userId", "formattedAddress", "price" "priceRangeLow", "priceRangeHigh",
   "type", "beds", "bath", "squareFootage", "yearBuilt", "lastSale", "lastSalePrice",
   "mortgagePayment", "mortgageBalance", "hoaPayment", "monthlyRent", "interestRate",
-  "notes", "imageUrl"
+  "notes", "image"
 )
 VALUES (
   1,

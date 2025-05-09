@@ -32,7 +32,7 @@ export default function OverviewTab({ properties = [] }: OverviewTabProps) {
     let cashflow = 0;
 
     for (const prop of properties) {
-      realEstateAssets += prop.estimatedValue || 0;
+      realEstateAssets += prop.price || 0;
       liabilities += prop.mortgageBalance || 0;
       mortgageExpenses += prop.mortgagePayment || 0;
       hoaExpenses += prop.hoaPayment || 0;
@@ -58,8 +58,8 @@ export default function OverviewTab({ properties = [] }: OverviewTabProps) {
     let highestAppreciationPercent = 0;
 
     for (const prop of properties) {
-      if (prop.lastSalePrice && prop.estimatedValue) {
-        const appreciationAmount = prop.estimatedValue - prop.lastSalePrice;
+      if (prop.lastSale && prop.price) {
+        const appreciationAmount = prop.price - prop.lastSalePrice;
         const appreciationPercent =
           (appreciationAmount / prop.lastSalePrice) * 100;
 
@@ -176,7 +176,7 @@ export default function OverviewTab({ properties = [] }: OverviewTabProps) {
               </p>
               <p className="text-sm text-muted-foreground">
                 Current value:{' '}
-                {formatCurrency(totals.topPerformer.estimatedValue)}
+                {formatCurrency(totals.topPerformer.price || 0)}
               </p>
               <p className="text-green-500 font-medium">
                 {totals.highestAppreciationPercent.toFixed(1)}% appreciation

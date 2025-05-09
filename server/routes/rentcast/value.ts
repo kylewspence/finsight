@@ -70,7 +70,7 @@ router.get('/', async (req, res, next) => {
     // Format the data to match our expected schema before sending it to the client.
     const formattedData = {
       formattedAddress: address,
-      estimatedValue: valueData.price || 0,
+      priceRangeHigh: valueData.priceRangeHigh || 0,
       priceRangeLow: valueData.priceRangeLow || 0,
       price: valueData.price || 0,
     };

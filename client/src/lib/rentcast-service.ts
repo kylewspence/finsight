@@ -7,13 +7,11 @@ const PropertySchema = z.object({
   bathrooms: z.number().optional().default(0),
   squareFootage: z.number().optional().default(0),
   yearBuilt: z.number().optional().default(0),
-  lastSaleDate: z.string().optional().default(''),
+  lastSale: z.string().optional().default(''),
   lastSalePrice: z.number().optional().default(0),
-  estimatedValue: z.number().optional().default(0),
   priceRangeLow: z.number().optional().default(0),
   price: z.number().optional().default(0),
-  estimatedRangeLow: z.number().optional(),
-  estimatedRangeHigh: z.number().optional(),
+  priceRangeHigh: z.number().optional(),
   lastUpdated: z
     .number()
     .optional()
@@ -45,9 +43,9 @@ export async function getPropertyDetails(
       ...propertyData,
       ...(valueData
         ? {
-            estimatedValue: valueData.estimatedValue || 0,
             priceRangeLow: valueData.priceRangeLow || 0,
             price: valueData.price || 0,
+            priceRangeHigh: valueData.priceRangeHigh || 0,
           }
         : {}),
       lastUpdated: Date.now(),

@@ -97,9 +97,9 @@ router.post('/', authMiddleware, async (req, res, next) => {
 
     const {
       formattedAddress,
-      estimatedValue,
-      estimatedRangeLow,
-      estimatedRangeHigh,
+      price,
+      priceRangeLow,
+      priceRangeHigh,
       type,
       beds,
       bath,
@@ -113,10 +113,10 @@ router.post('/', authMiddleware, async (req, res, next) => {
     }
 
     const apiKey = process.env.GOOGLE_MAPS_API_KEY;
-    let imageUrl = '';
+    let image = '';
 
     if (apiKey) {
-      imageUrl = `https://maps.googleapis.com/maps/api/streetview?size=600x400&location=${encodeURIComponent(
+      image = `https://maps.googleapis.com/maps/api/streetview?size=600x400&location=${encodeURIComponent(
         formattedAddress
       )}&key=${apiKey}`;
     } else {
@@ -127,9 +127,6 @@ router.post('/', authMiddleware, async (req, res, next) => {
         INSERT into "properties" 
         ("userId",  
         "formattedAddress",
-        "estimatedValue",
-        "estimatedRangeLow",
-        "estimatedRangeHigh",
         "type",
         "beds",
         "bath",
@@ -137,7 +134,7 @@ router.post('/', authMiddleware, async (req, res, next) => {
         "yearBuilt",
         "lastSale",
         "lastSalePrice",
-        "imageUrl")
+        "image3")
         values ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13)
         RETURNING *;
         `;
@@ -145,9 +142,9 @@ router.post('/', authMiddleware, async (req, res, next) => {
     const params = [
       userId,
       formattedAddress,
-      Math.round(estimatedValue) || 0,
-      Math.round(estimatedRangeLow) || 0,
-      Math.round(estimatedRangeHigh) || 0,
+      Math.round(price) || 0,
+      Math.round(priceRangeLow) || 0,
+      Math.round(priceRangeHigh) || 0,
       type || 'Single Family',
       beds || 0,
       bath || 0,
@@ -155,7 +152,7 @@ router.post('/', authMiddleware, async (req, res, next) => {
       Math.round(yearBuilt) || 0,
       lastSale || '',
       Math.round(lastSalePrice) || 0,
-      imageUrl,
+      image,
     ];
     console.log('Params:', params);
 

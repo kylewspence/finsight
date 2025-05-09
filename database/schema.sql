@@ -17,9 +17,9 @@ CREATE TABLE "properties" (
   "propertyId" serial PRIMARY KEY,
   "userId" integer REFERENCES "users" ("userId"),
   "formattedAddress" text,
-  "estimatedValue" integer,
-  "estimatedRangeLow" integer,
-  "estimatedRangeHigh" integer,
+  "price" integer,
+  "priceRangeLow" integer,
+  "priceRangeHigh" integer,
   "type" text,
   "beds" integer,
   "bath" numeric,
@@ -31,9 +31,9 @@ CREATE TABLE "properties" (
   "mortgageBalance" integer,
   "hoaPayment" integer,
   "interestRate" numeric,
-  "imageUrl" text,
+  "image" text,
   "monthlyRent" integer,
-  "notes" text
+  "notes" text,
 );
 
 

@@ -230,16 +230,16 @@ export function PropertyModal({
         <div className="grid gap-2">
           <div className="text-sm font-medium">Estimated Value</div>
           <div className="text-2xl font-bold">
-            {formatCurrency(property.estimatedValue)}
+            {formatCurrency(property.price || 0)}
           </div>
           <div className="text-sm text-muted-foreground">
             Range:{' '}
             {formatCurrency(
-              property.estimatedRangeLow || property.priceRangeLow || 0
+              property.priceRangeLow || 0
             )}{' '}
             -{' '}
             {formatCurrency(
-              property.estimatedRangeHigh || property.priceRangeHigh || 0
+              property.priceRangeHigh || 0
             )}
           </div>
         </div>
